@@ -1,20 +1,24 @@
 {
-  "name": "code-exercise-hubspot",
-  "version": "0.1.0",
+  "name": "code-exercise-becca",
+  "version": "1.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next build && next start",
     "lint": "next lint"
   },
+  "author": "HubSpot Applicant",
+  "license": "ISC",
   "dependencies": {
+    "fuse.js": "^6.5.3",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0"
   },
   "devDependencies": {
     "eslint": "8.12.0",
-    "eslint-config-next": "12.1.4"
+    "eslint-config-next": "12.1.4",
+    "sass": "^1.49.10"
   }
 }
