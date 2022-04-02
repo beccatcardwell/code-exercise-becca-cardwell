@@ -101,6 +101,7 @@ h1 hr {
       visibility: hidden;
       opacity: 0;
       transition: all 0.15s ease-in;
+      z-index: 1;
 
       &.active {
         visibility: visible;
