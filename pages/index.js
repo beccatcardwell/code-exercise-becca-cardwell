@@ -64,9 +64,9 @@ export default function Home (props) {
       .filter(item => {
         if (categoryFilters.filter(item => genres.includes(item)).length === 0)
           return item
-        item.genre.forEach(genre => {
-          if (categoryFilters.includes(genre)) return item
-        })
+
+        if (categoryFilters.some(genre => item.genre.includes(genre)))
+          return item
       })
 
       //filter based on search input value
