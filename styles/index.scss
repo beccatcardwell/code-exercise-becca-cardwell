@@ -67,6 +67,7 @@ h1 hr {
   .dropdown {
     display: inline-block;
       margin:  0 1rem 0 0;
+
     .dropdown-inner {
       position: relative;
     }
@@ -213,7 +214,8 @@ h1 hr {
 
 .media-items {
   text-align: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 4%;
 
   max-width: 100%;
   display: flex;
