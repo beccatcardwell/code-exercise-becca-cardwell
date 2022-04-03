@@ -1,17 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Fuse from 'fuse.js'
 
 //component imports
 import Dropdown from '../components/Dropdown'
+import IndexPage from '../components/IndexPage'
 import MediaItem from '../components/MediaItem'
+import RadioInput from '../components/RadioInput'
 import Search from '../components/Search'
 
 export default function Home (props) {
   const [searchQuery, setSearchQuery] = useState(null)
+  const [categoryFilters, setCategoryFilters] = useState([])
 
-  let categoryFilters = []
+  console.log(`categoryFilters`, categoryFilters)
   // sorting media alphabetically by title
   const sortedMedia = props.data.media.sort((a, b) => {
     const titleA = a.title.toUpperCase()
@@ -34,13 +37,41 @@ export default function Home (props) {
   })
 
   const renderMediaItems = items =>
-    // .filter() post based on searchParams, then .map() elements
     items
+      //filter based on type
+      .filter(item => {
+        if (categoryFilters.length === 0) return item
+        if (
+          !categoryFilters.includes('book') &&
+          !categoryFilters.includes('movie')
+        )
+          return item
+        if (categoryFilters.includes(item.type)) return item
+      })
+
+      //filter basted on year
+      .filter(item => {
+        if (categoryFilters.filter(item => years.includes(item)).length === 0)
+          return item
+        if (categoryFilters.includes(item.year)) return item
+      })
+
+      //filter based on genre
+      .filter(item => {
+        if (categoryFilters.filter(item => genres.includes(item)).length === 0)
+          return item
+        item.genre.forEach(genre => {
+          if (categoryFilters.includes(genre)) return item
+        })
+      })
+
+      //filter based on search input value
       .filter(item => {
         if (searchQuery === null) return item
         else if (item.title.toLowerCase().includes(searchQuery.toLowerCase()))
           return item
       })
+
       .map(item => {
         //reformatting title so it works as element id used to aria-labelledby each media element
         const reformTitle = item.title
@@ -61,8 +92,10 @@ export default function Home (props) {
           />
         )
       })
+
   return (
     <>
+      <IndexPage />
       <header>
         <h1>Code Exercise - Becca Cardwell</h1>
       </header>
@@ -92,24 +125,48 @@ export default function Home (props) {
 
         <div className='media-search-container'>
           <div className='media-search-header'>
-            <div className='dropdown-section'>
-              <Dropdown
-                category='Genres'
-                categoryFilters={categoryFilters}
-                options={genres}
-              />
-              <Dropdown
-                category='Year'
-                categoryFilters={categoryFilters}
-                options={years}
-              />
+            <div className='media-search-row'>
+              <div className='dropdown-section'>
+                <Dropdown
+                  category='Genres'
+                  categoryFilters={categoryFilters}
+                  setCategoryFilters={setCategoryFilters}
+                  options={genres}
+                />
+                <Dropdown
+                  category='Year'
+                  categoryFilters={categoryFilters}
+                  setCategoryFilters={setCategoryFilters}
+                  options={years}
+                />
+              </div>
+              <div className='search-section'>
+                <Search setSearchQuery={setSearchQuery} />
+              </div>
             </div>
-            <div className='search-section'>
-              <Search setSearchQuery={setSearchQuery} />
+
+            <div className='media-search-row'>
+              <div className='type-section'>
+                <fieldset>
+                  <legend>Media Type</legend>
+                  <RadioInput
+                    label='Movies'
+                    type='movie'
+                    categoryFilters={categoryFilters}
+                    setCategoryFilters={setCategoryFilters}
+                  />
+                  <RadioInput
+                    label='Books'
+                    type='book'
+                    categoryFilters={categoryFilters}
+                    setCategoryFilters={setCategoryFilters}
+                  />
+                </fieldset>
+              </div>
             </div>
           </div>
 
-          <div className='media-items'>
+          <div className='media-items' aria-live='polite'>
             {renderMediaItems(props.data.media)}
           </div>
         </div>

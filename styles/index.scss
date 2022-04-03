@@ -51,10 +51,14 @@ h1 hr {
   border-radius: 3px;
 }
 .media-search-header {
-  display: flex;
-  align-items: center;
+  
   padding: 3rem 4rem;
   border-bottom: 2px solid #DEDEDE;
+
+  .media-search-row {
+    display: flex;
+    align-items: center;
+  }
 
   .dropdown-section {
     flex-grow: 1;
@@ -148,20 +152,41 @@ h1 hr {
     }
   }
 
+  //Search media section
+  .search-section {
+    position: relative;
+  }
+
   input[type=search] {
     height: 2.5rem;
     position: relative;
-
-   
+    width: 15rem;
+    padding-right: 2rem;
   }
+
   .search-icon {
+    display: flex;
+    align-items: center;
     position: absolute;
     top: 0;
-    right: 0;
-    background-color: grey;
-    content: "url(/search-icon.svg)";
+    right: 5px;
     height: 100%;
-    width: 100px;
+    
+  }
+
+  //media type radio inputs
+  .type-section {
+    margin-top: 2rem;
+
+    .radio-container {
+      display: inline-block;
+      margin-right: 1rem;
+
+      label {
+        padding-left: 0.5rem;
+        text-transform: capitalize;
+      }
+    }
   }
 }
 

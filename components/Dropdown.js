@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Dropdown = props => {
-  const { category, options } = props
+  const { category, categoryFilters, setCategoryFilters, options } = props
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   const renderInputs = inputs =>
     inputs.map(input => {
-        const handleInputChange = (event) => {
-            
+      const handleInputChange = event => {
+        if (event.target.checked) setCategoryFilters(arr => [...arr, input])
+        else if (!event.target.checked) {
+          setCategoryFilters(categoryFilters.filter(item => item !== input))
         }
+      }
+
       return (
         <li key={input} className='dropdown-item'>
           <input
