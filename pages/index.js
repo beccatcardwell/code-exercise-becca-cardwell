@@ -14,7 +14,6 @@ export default function Home (props) {
   const [searchQuery, setSearchQuery] = useState(null)
   const [categoryFilters, setCategoryFilters] = useState([])
 
-  console.log(`categoryFilters`, categoryFilters)
   // sorting media alphabetically by title
   const sortedMedia = props.data.media.sort((a, b) => {
     const titleA = a.title.toUpperCase()
@@ -54,7 +53,6 @@ export default function Home (props) {
   const handleClearFilters = event => {
     setCategoryFilters([])
   }
-  console.log(finalResults)
 
   const renderMediaItems = items =>
     items

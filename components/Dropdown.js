@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 
 const Dropdown = props => {
@@ -6,22 +6,58 @@ const Dropdown = props => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
+  const dropdownButtonRef = useRef(null)
+  const dropdownMenuRef = useRef(null)
+  const lastDropdownInputRef = useRef(null)
+
+  //Adding event listener when dropdown is open to detect click outside dropdown, then cleaning up event listener when closed
+  useEffect(() => {
+    if (!isDropdownOpen) return
+    const handleClick = event => {
+      if (
+        dropdownMenuRef.current &&
+        !dropdownMenuRef.current.contains(event.target) &&
+        !dropdownButtonRef.current.contains(event.target)
+      ) {
+        setIsDropdownOpen(false)
+      } else setIsDropdownOpen(true)
+    }
+    window.addEventListener('click', handleClick)
+    return () => window.removeEventListener('click', handleClick)
+  }, [isDropdownOpen])
+
+  const handleBlur = event => {
+    setIsDropdownOpen(false)
+    dropdownButtonRef.current.focus()
+  }
+
+  const handleKeyDown = event => {
+    if (event.key === 'Escape') {
+      setIsDropdownOpen(false)
+      dropdownButtonRef.current.focus()
+    }
+  }
+
   const renderInputs = inputs =>
-    inputs.map(input => {
+    inputs.map((input, index) => {
       const handleInputChange = event => {
         if (event.target.checked) setCategoryFilters(arr => [...arr, input])
         else if (!event.target.checked) {
           setCategoryFilters(categoryFilters.filter(item => item !== input))
         }
       }
+
       const checkedValue = categoryFilters
         .filter(item => item === input)
         .toString()
 
-      console.log(`checkedValue`, checkedValue)
       return (
         <li key={input} className='dropdown-item'>
           <input
+            onBlur={event =>
+              input === inputs[inputs.length - 1] ? handleBlur(event) : null
+            }
+            onKeyDown={handleKeyDown}
             checked={checkedValue === input}
             id={`input-${category}-${input}`}
             onChange={handleInputChange}
@@ -39,6 +75,7 @@ const Dropdown = props => {
       <div className='dropdown'>
         <div className='dropdown-inner'>
           <button
+            ref={dropdownButtonRef}
             id={`dropdown-btn-${category}`}
             aria-controls={`content-${category}`}
             className='dropdown-toggle'
@@ -60,12 +97,13 @@ const Dropdown = props => {
               />
             </span>
           </button>
-          <ul
+          <div
+            ref={dropdownMenuRef}
             id={`dropdown-menu-${category}`}
             className={`dropdown-menu${isDropdownOpen ? ' active' : ''}`}
           >
-            {options && renderInputs(options.sort())}
-          </ul>
+            <ul>{options && renderInputs(options.sort())}</ul>
+          </div>
         </div>
       </div>
     )

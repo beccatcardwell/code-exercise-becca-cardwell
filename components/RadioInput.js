@@ -23,7 +23,6 @@ const RadioInput = props => {
   }
 
   const checkedValue = categoryFilters.filter(item => item === type).toString()
-  console.log(checkedValue)
 
   return (
     <>
