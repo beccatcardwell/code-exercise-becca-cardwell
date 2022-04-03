@@ -38,7 +38,9 @@ export default function Home (props) {
 
   const fuse = new Fuse(props.data.media, {
     keys: ['title', 'year', 'type', 'genre'],
-    includeScore: true
+    includeScore: true,
+    threshold: 0.4,
+    distance: 100
   })
 
   const results = fuse.search(searchQuery || '')
