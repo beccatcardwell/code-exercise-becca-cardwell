@@ -117,7 +117,7 @@ export default function Home (props) {
           <h2>Exercise 1 - Testimonial Block</h2>
         </div>
 
-        <div>
+        <div className='blockquote-container'>
           <div>
             <div>
               <p>

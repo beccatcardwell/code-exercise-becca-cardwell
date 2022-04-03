@@ -38,6 +38,88 @@ h1 hr {
   background-color: #00a4bd;
 }
 
+//
+// Exercise 1 -Testimonial Blockquote
+//
+.blockquote-container {
+  text-align: center;
+  padding: 5% 30%;
+
+  @media (max-width: 1700px) {
+    padding: 5% 25%;
+  }
+  @media (max-width: 1310px) {
+    padding: 5% 15%;
+  }
+  @media (max-width: 938px) {
+    padding: 5% 10%;
+  }
+
+  div {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+   
+  }
+
+  div div {
+    position: relative;
+    max-width: 60%;
+    padding: 0 2rem;
+    display: block;
+    border-left: 2px solid #FF6C01;
+
+    @media (max-width: 938px) {
+      max-width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    &::before {
+      content: '\201C';
+      position: absolute;
+      text-align: center;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: white;
+      top: 0rem;
+      left: -.77rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      max-height: 1.5rem;
+      background-color: #FF6C01;
+      border-radius: 100%;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0rem;
+      left: -0.325rem;
+      width: .5rem;
+      height: 0.5rem;
+      background-color: #FF6C01;
+      border-radius: 100%;
+    }
+    
+  }
+
+  a {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 1rem;
+    width: 10rem;
+    background-color: #00A1E1;
+    cursor: pointer;
+
+    @media (max-width: 938px) { 
+      margin-left: 2rem;  
+    }
+
+  }
+}
+
 
 //
 //Exercise 2 - Media Search - Filterable Content
