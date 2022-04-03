@@ -36,6 +36,10 @@ export default function Home (props) {
     !findYear && years.push(item.year)
   })
 
+  const handleClearFilters = event => {
+    setCategoryFilters([])
+  }
+
   const renderMediaItems = items =>
     items
       //filter based on type
@@ -162,6 +166,9 @@ export default function Home (props) {
                     setCategoryFilters={setCategoryFilters}
                   />
                 </fieldset>
+              </div>
+              <div className='clear-filters-section'>
+                <button onClick={handleClearFilters}>Clear filters</button>
               </div>
             </div>
           </div>

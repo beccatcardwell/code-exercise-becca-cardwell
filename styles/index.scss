@@ -60,7 +60,7 @@ h1 hr {
     align-items: center;
   }
 
-  .dropdown-section {
+  .dropdown-section, .clear-filters-section {
     flex-grow: 1;
   }
 
@@ -73,18 +73,33 @@ h1 hr {
    
 
     button {
-      font-size: 1.5rem;
-      padding: 0.5rem 2rem;
-      width: 10rem;
+      font-size: 1.1rem;
+      padding: 0.5rem;
+      width: 11rem;
       background-color: #F9F9F9;
       border: none;
       border-bottom: 4px solid #DEDEDE;
       cursor: pointer;
       text-transform: uppercase;
       font-weight: bold;
+      display: flex;
+      align-items: center;
 
       &:hover {
         background-color: #DEDEDE;
+      }
+
+      span.img-container {
+        text-align: right;
+        flex-grow: 2;
+
+        img {
+          transition: all 0.15s ease-in;
+        }
+
+       &.active img {
+         transform: rotate(90deg);
+       }
       }
     }
 
@@ -183,10 +198,16 @@ h1 hr {
       margin-right: 1rem;
 
       label {
+        font-weight: bold;
         padding-left: 0.5rem;
         text-transform: capitalize;
       }
     }
+  }
+
+  .clear-filters-section {
+    text-align: right;
+    margin-top: 2rem;
   }
 }
 

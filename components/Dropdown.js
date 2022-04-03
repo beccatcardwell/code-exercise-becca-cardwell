@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 const Dropdown = props => {
   const { category, categoryFilters, setCategoryFilters, options } = props
@@ -13,10 +14,15 @@ const Dropdown = props => {
           setCategoryFilters(categoryFilters.filter(item => item !== input))
         }
       }
+      const checkedValue = categoryFilters
+        .filter(item => item === input)
+        .toString()
 
+      console.log(`checkedValue`, checkedValue)
       return (
         <li key={input} className='dropdown-item'>
           <input
+            checked={checkedValue === input}
             id={`input-${category}-${input}`}
             onChange={handleInputChange}
             type='checkbox'
@@ -41,6 +47,18 @@ const Dropdown = props => {
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
             {category}
+            <span
+              aria-hidden='true'
+              className={`img-container${isDropdownOpen ? ' active' : ''}`}
+            >
+              <Image
+                src='/chevron-right.svg'
+                alt=''
+                height={20}
+                width={20}
+                layout='intrinsic'
+              />
+            </span>
           </button>
           <ul
             id={`dropdown-menu-${category}`}

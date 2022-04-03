@@ -22,11 +22,15 @@ const RadioInput = props => {
       setCategoryFilters(categoryFilters.filter(item => item !== 'book'))
   }
 
+  const checkedValue = categoryFilters.filter(item => item === type).toString()
+  console.log(checkedValue)
+
   return (
     <>
       <div className='radio-container'>
         <input
           name='media-type'
+          checked={checkedValue === type}
           onChange={handleInputChange}
           onClick={handleClick}
           value={type}
