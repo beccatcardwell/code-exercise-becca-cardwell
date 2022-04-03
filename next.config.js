@@ -6,7 +6,8 @@ const nextConfig = {
       'd.gr-assets.com',
       'ia.media-imdb.com',
       'i.kinja-img.com',
-      'oops-i-dont-work.jpg'
+      'oops-i-dont-work.jpg',
+      'placekitten.com'
     ]
   },
   reactStrictMode: true,

@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 const Search = props => {
   const { setSearchQuery } = props
   const handleInputChange = event => {
@@ -15,7 +17,16 @@ const Search = props => {
         placeholder='Search...'
         onChange={handleInputChange}
       />
-      <span className='search-icon' aria-hidden='true' />
+      <span className='search-icon' aria-hidden='true'>
+        <Image
+          alt=''
+          width={20}
+          height={20}
+          layout='intrinsic'
+          objectFit='contain'
+          src='/search_icon.svg'
+        />
+      </span>
     </>
   )
 }

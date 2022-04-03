@@ -19,7 +19,7 @@ const MediaItem = props => {
       aria-labelledby={`media-title-${id + '-' + year}`}
       className='media-item-container'
     >
-      <div className='media-text'>
+      <div className='media-content'>
         <Image
           alt=''
           src={poster || 'http://placekitten.com/g/300/450'}

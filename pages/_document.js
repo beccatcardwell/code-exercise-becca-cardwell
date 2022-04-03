@@ -16,6 +16,16 @@ class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head />
+        <link
+          display='optional'
+          href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+          rel='stylesheet'
+        />
+        <link
+          display='optional'
+          href='https://fonts.googleapis.com/css?family=Roboto+Slab:300,400'
+          rel='stylesheet'
+        ></link>
         <body>
           <Main />
           <NextScript />

@@ -38,6 +38,88 @@ h1 hr {
   background-color: #00a4bd;
 }
 
+//
+// Exercise 1 -Testimonial Blockquote
+//
+.blockquote-container {
+  text-align: center;
+  padding: 5% 30%;
+
+  @media (max-width: 1700px) {
+    padding: 5% 25%;
+  }
+  @media (max-width: 1310px) {
+    padding: 5% 15%;
+  }
+  @media (max-width: 938px) {
+    padding: 5% 10%;
+  }
+
+  div {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+   
+  }
+
+  div div {
+    position: relative;
+    max-width: 60%;
+    padding: 0 2rem;
+    display: block;
+    border-left: 2px solid #FF6C01;
+
+    @media (max-width: 938px) {
+      max-width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    &::before {
+      content: '\201C';
+      position: absolute;
+      text-align: center;
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: white;
+      top: 0rem;
+      left: -.77rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      max-height: 1.5rem;
+      background-color: #FF6C01;
+      border-radius: 100%;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0rem;
+      left: -0.325rem;
+      width: .5rem;
+      height: 0.5rem;
+      background-color: #FF6C01;
+      border-radius: 100%;
+    }
+    
+  }
+
+  a {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 1rem;
+    width: 10rem;
+    background-color: #00A1E1;
+    cursor: pointer;
+
+    @media (max-width: 938px) { 
+      margin-left: 2rem;  
+    }
+
+  }
+}
+
 
 //
 //Exercise 2 - Media Search - Filterable Content
@@ -51,62 +133,117 @@ h1 hr {
   border-radius: 3px;
 }
 .media-search-header {
-  display: flex;
-  align-items: center;
+  max-width: 100%;
   padding: 3rem 4rem;
   border-bottom: 2px solid #DEDEDE;
 
-  .dropdown-section {
+  .media-search-row {
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .dropdown-section, .clear-filters-section {
     flex-grow: 1;
+
+  }
+
+  @media (max-width: 1200px) {
+    .dropdown-section {
+      width: 100%;
+    }
   }
 
   .dropdown {
     display: inline-block;
       margin:  0 1rem 0 0;
+
+      @media (max-width: 1200px) {
+        margin: 0 1rem 2rem 0;
+      }
+
     .dropdown-inner {
       position: relative;
     }
-   
 
     button {
-      font-size: 1.5rem;
-      padding: 0.5rem 2rem;
-      width: 10rem;
+      font-size: 1.1rem;
+      padding: 0.5rem;
+      width: 11rem;
       background-color: #F9F9F9;
       border: none;
       border-bottom: 4px solid #DEDEDE;
       cursor: pointer;
       text-transform: uppercase;
       font-weight: bold;
+      display: flex;
+      align-items: center;
 
       &:hover {
         background-color: #DEDEDE;
       }
+
+      span.img-container {
+        text-align: right;
+        flex-grow: 2;
+
+        img {
+          transition: all 0.15s ease-in;
+        }
+
+       &.active img {
+         transform: rotate(90deg);
+       }
+      }
     }
 
-    ul.dropdown-menu {
+    .dropdown-menu {
       position: absolute;
-      top: 4rem;
+      top: 3.5rem;
       left: 50%;
       width: 100%;
       transform: translateX(-50%);
-      list-style: none;
-      margin: 0 auto;
-      padding-left: 0;
       background-color: white;
       text-align: center;
-      border: 2px solid #DEDEDE;
-      max-height: 400px;
-      overflow-y: auto;
+      border: 2px solid #DEDEDE;  
       visibility: hidden;
       opacity: 0;
       transition: all 0.15s ease-in;
+      z-index: 1;
 
       &.active {
         visibility: visible;
         opacity: 1;
+
+        &::before{
+          content:''; /* Required to display content */
+          position: absolute; /* Sets the position absolute to the top div */
+          top: 0;
+          left: 25%;/* position the little arrow */
+          margin-left: -20px;
+          margin-top:-11px; /* Set margin equal to border px */
+          width: 0;
+          z-index:2;
+          height: 20px;
+          width: 20px;
+          clip-path: polygon(100% 0, 100% 0%, 100% 100%, 0% 100%);
+          background-color: white;
+          border-bottom: solid 2px #DEDEDE; /* Creates the arrow pointing up, to change to a notch instead user border-top */
+          border-right: solid 2px #DEDEDE; /* Creates triangle effect */
+          transform: rotate(-135deg);
+          transition: all .15s ease-in;
+        
+      }
       }
 
+      ul {
+        margin: 0 auto;
+        max-height: 400px;
+        overflow-y: auto;
+        list-style: none;
+        padding-left: 0;
+      }
       li.dropdown-item {
         text-align: left;
         text-transform: uppercase;
@@ -147,33 +284,75 @@ h1 hr {
     }
   }
 
+  //Search media section
+  .search-section {
+    position: relative;
+  }
+
   input[type=search] {
     height: 2.5rem;
     position: relative;
-
-   
+    width: 15rem;
+    padding-right: 2rem;
   }
+
   .search-icon {
+    display: flex;
+    align-items: center;
     position: absolute;
     top: 0;
-    right: 0;
-    background-color: grey;
-    content: "url(/search-icon.svg)";
+    right: 5px;
     height: 100%;
-    width: 100px;
+    
   }
+
+  //media type radio inputs
+  .type-section {
+    margin-top: 2rem;
+
+    .radio-container {
+      display: inline-block;
+      margin-right: 1rem;
+
+      label {
+        font-weight: bold;
+        padding-left: 0.5rem;
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .clear-filters-section {
+    text-align: right;
+    margin-top: 2rem;
+
+    @media (max-width: 700px) {
+      text-align: left;
+      width: 100%;
+    }
+  }
+
 }
 
 .media-items {
   text-align: center;
   justify-content: center;
-
+  padding-left: 1.5%;
   max-width: 100%;
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
-  flex-grow: 1;
   margin-top: 5rem;
+
+  .media-content {
+    flex-grow: 2;
+  }
+}
+
+@media (max-width: 985px) {
+  .media-items {
+    padding-left: 7%;
+  }
 }
 
 .media-item-container {
