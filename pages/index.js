@@ -36,9 +36,23 @@ export default function Home (props) {
     !findYear && years.push(item.year)
   })
 
+  const fuse = new Fuse(props.data.media, {
+    keys: ['title', 'year', 'type', 'genre'],
+    includeScore: true
+  })
+
+  const results = fuse.search(searchQuery || '')
+
+  let finalResults = []
+
+  results.forEach(result => {
+    finalResults.push(result.item)
+  })
+
   const handleClearFilters = event => {
     setCategoryFilters([])
   }
+  console.log(finalResults)
 
   const renderMediaItems = items =>
     items
@@ -70,11 +84,6 @@ export default function Home (props) {
       })
 
       //filter based on search input value
-      .filter(item => {
-        if (searchQuery === null) return item
-        else if (item.title.toLowerCase().includes(searchQuery.toLowerCase()))
-          return item
-      })
 
       .map(item => {
         //reformatting title so it works as element id used to aria-labelledby each media element
@@ -174,7 +183,7 @@ export default function Home (props) {
           </div>
 
           <div className='media-items' aria-live='polite'>
-            {renderMediaItems(props.data.media)}
+            {renderMediaItems(searchQuery ? finalResults : props.data.media)}
           </div>
         </div>
       </main>

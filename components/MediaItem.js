@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const MediaItem = props => {
   const { id, title, year, poster, genre, type } = props
-
+  console.log(`genre`, genre)
   const renderGenres = genres =>
     genres.map((genre, index) => {
       return (
