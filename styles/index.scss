@@ -16,6 +16,10 @@ h1 hr {
   background-color: #00a4bd;
 }
 
+button {
+  cursor: pointer;
+}
+
 // Hide text to be used only by screen readers
 .sr-only {
 	border: 0 !important;
@@ -294,6 +298,11 @@ h1 hr {
     position: relative;
     width: 15rem;
     padding-right: 2rem;
+    max-width: 100%;
+
+    @media (max-width: 720px ) {
+      width: 11rem;
+    }
   }
 
   .search-icon {
