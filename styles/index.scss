@@ -141,6 +141,10 @@ button {
   padding: 3rem 4rem;
   border-bottom: 2px solid #DEDEDE;
 
+  @media (max-width: 720px) {
+    padding: 3rem 2rem;
+  }
+
   .media-search-row {
     max-width: 100%;
     display: flex;
