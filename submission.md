@@ -4,11 +4,13 @@ This submission is using Next.js, a React.js framework. It is taking advantage o
 
 I am using Fuse.js to handle fuzzy search.
 
-I created keyboard functionality for the dropdown menus so that when the Escape key is hit, or onBlur() of the last dropdown input, it will close the menu and send focus back to it's controlling button
+I created keyboard functionality for the dropdown menus so that when the Escape key is hit, or onBlur() of the last dropdown input, it will close the menu and send focus back to it's controlling button.
+
+My code editor has a prettier-standard code formatter to keep code well formatted, and the project has ESLint.
 
 ## Given more time, what would you have done differently?
 
-_your answer here_
+More optimization and breaking up some of the code in pages/index.js into a container component to make the page a little cleaner
 
 ## How did you deviate from the directions, if at all, and why?
 
