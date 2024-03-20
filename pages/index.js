@@ -197,9 +197,7 @@ export async function getServerSideProps () {
   // const res = await fetch(
   //   'https://raw.githubusercontent.com/HubSpotWebTeam/CodeExercise/main/src/js/data/data.json'
   // )
-
   // const data = await res.json()
-  console.log(JSONData)
 
   // if (!res.ok) {
   //   throw new Error(`Failed to fetch posts, received status ${res.status}`)
