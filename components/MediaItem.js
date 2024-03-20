@@ -27,8 +27,8 @@ const MediaItem = props => {
             event.target.src = 'https://placekitten.com/300/450'
             event.target.parentNode.className = 'img-error'
           }}
-          placeholder='blur'
-          blurDataURL
+          // placeholder='blur'
+          // blurDataURL
           width={300}
           height={400}
           layout='intrinsic'
