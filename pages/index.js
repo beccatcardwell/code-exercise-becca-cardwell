@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Fuse from 'fuse.js'
+import JSONData from '../data/data.json'
 
 //component imports
 import Dropdown from '../components/Dropdown'
@@ -192,18 +193,19 @@ export default function Home (props) {
 }
 
 export async function getServerSideProps () {
-  const res = await fetch(
-    'https://raw.githubusercontent.com/HubSpotWebTeam/CodeExercise/main/src/js/data/data.json'
-  )
-  const data = await res.json()
+  // API is no longer live
+  // const res = await fetch(
+  //   'https://raw.githubusercontent.com/HubSpotWebTeam/CodeExercise/main/src/js/data/data.json'
+  // )
+  // const data = await res.json()
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch posts, received status ${res.status}`)
-  }
+  // if (!res.ok) {
+  //   throw new Error(`Failed to fetch posts, received status ${res.status}`)
+  // }
 
   return {
     props: {
-      data
+      data: JSONData
     }
   }
 }
