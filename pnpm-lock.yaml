@@ -37,8 +37,8 @@ packages:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
 
-  '@babel/runtime-corejs3@7.24.1':
-    resolution: {integrity: sha512-T9ko/35G+Bkl+win48GduaPlhSlOjjE5s1TeiEcD+QpxlLQnoEfb/nO/T+TQqkm+ipFwORn+rB8w14iJ/uD0bg==}
+  '@babel/runtime-corejs3@7.26.10':
+    resolution: {integrity: sha512-uITFQYO68pMEYR46AHgQoyBg7KPPJDAbGn4jUTIRgCFJIp88MIBUianVOplhZDEec07bp9zIyr4Kp0FCyQzmWg==}
     engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.24.1':
@@ -487,6 +487,7 @@ packages:
   eslint@8.12.0:
     resolution: {integrity: sha512-it1oBL9alZg1S8UycLm5YDMAkIhtH6FtAzuZs6YvoGVldWjbS08BkAdb/ymP9LlAyq8koANu32U7Ib/w+UNh8Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -1168,7 +1169,7 @@ snapshots:
 
   '@aashutoshrathi/word-wrap@1.2.6': {}
 
-  '@babel/runtime-corejs3@7.24.1':
+  '@babel/runtime-corejs3@7.26.10':
     dependencies:
       core-js-pure: 3.36.1
       regenerator-runtime: 0.14.1
@@ -1321,7 +1322,7 @@ snapshots:
   aria-query@4.2.2:
     dependencies:
       '@babel/runtime': 7.24.1
-      '@babel/runtime-corejs3': 7.24.1
+      '@babel/runtime-corejs3': 7.26.10
 
   array-buffer-byte-length@1.0.1:
     dependencies:
